@@ -1,0 +1,12 @@
+*.svg
+*.png
+*.jpg
+.gitignore
+/node_modules
+/build
+yarn.lock
+*.tff
+*.woff
+*.woff2
+Dockerfile
+coverage

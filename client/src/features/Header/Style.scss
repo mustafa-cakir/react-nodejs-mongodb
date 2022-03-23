@@ -1,0 +1,132 @@
+@import '/src/assets/styles/mixins';
+
+.header {
+    position: relative;
+    margin-bottom: 75px;
+    &-bg {
+        background: linear-gradient(to bottom, $color-header-bg-1 0%, $color-header-bg-2 100%);
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 3;
+        transition: background 0.2s linear;
+        .theme-dark & {
+            background: linear-gradient(
+                to bottom,
+                mix($color-header-bg-1, $color-dark, 3%) 0%,
+                mix($color-header-bg-2, $color-dark, 5%) 100%
+            );
+        }
+        &-curve {
+            transition: background 0.2s linear;
+            border-radius: 100%;
+            position: absolute;
+            background: linear-gradient(
+                to bottom,
+                $color-header-bg-2 0%,
+                $color-header-bg-2 50%,
+                $color-header-bg-3 100%
+            );
+            left: 0;
+            right: 0;
+            height: 100px;
+            bottom: -50px;
+            z-index: 2;
+            .theme-dark & {
+                background: linear-gradient(
+                    to bottom,
+                    mix($color-header-bg-2, $color-dark, 5%) 0%,
+                    mix($color-header-bg-2, $color-dark, 5%) 50%,
+                    mix($color-header-bg-2, $color-dark, 8%) 100%
+                );
+            }
+        }
+    }
+    &-content {
+        padding: 25px 0;
+        position: relative;
+        z-index: 4;
+    }
+
+    &-inner {
+        display: flex;
+        align-items: center;
+        &-left {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        &-right {
+            //
+        }
+    }
+    &-logo {
+        display: block;
+        height: 40px;
+        width: auto;
+    }
+    &-separator {
+        display: none;
+        width: 2px;
+        height: 40px;
+        background-color: $color-light;
+        margin: 0 25px;
+        @include media-breakpoint-up(md) {
+            display: block;
+        }
+        .theme-dark & {
+            background-color: rgba($color-light, 0.5);
+        }
+    }
+    &-slogan {
+        display: none;
+        margin: 0;
+        font-size: 25px;
+        color: $color-light;
+        @include media-breakpoint-up(md) {
+            display: block;
+        }
+        .theme-dark & {
+            color: rgba($color-light, 0.5);
+        }
+    }
+    &-menu-items {
+        margin-top: 15px;
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a {
+                display: block;
+                border: none;
+                position: relative;
+                padding: 5px 15px;
+                &,
+                .theme-dark & {
+                    color: rgba($color-light, 0.6);
+                }
+                &:hover,
+                &.active {
+                    &,
+                    .theme-dark & {
+                        color: $color-light;
+                    }
+                }
+                &.active {
+                    &:after {
+                        top: 100%;
+                        content: '';
+                        height: 6px;
+                        width: 6px;
+                        border-radius: 100%;
+                        position: absolute;
+                        left: 50%;
+                        margin-left: -3px;
+                        background-color: rgba($color-light, 0.6);
+                    }
+                }
+            }
+        }
+    }
+}

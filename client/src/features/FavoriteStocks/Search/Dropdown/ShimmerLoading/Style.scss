@@ -1,0 +1,10 @@
+.dropdown-shimmer {
+    padding: 10px 15px;
+    &-inner {
+        display: flex;
+        align-items: center;
+    }
+    &-sep {
+        margin: 0 15px;
+    }
+}

@@ -1,0 +1,14 @@
+@import 'src/assets/styles/mixins';
+
+.favorite-stocks-list-empty {
+    padding: 20px;
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba($color-dark, 0.3);
+    .theme-dark & {
+        border-color: rgba($color-light, 0.3);
+    }
+}

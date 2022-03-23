@@ -1,0 +1,100 @@
+@import 'src/assets/styles/mixins';
+
+.favorite-stocks-list-table {
+    // table codes here
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    &:after {
+        border-radius: 100%;
+        content: '';
+        height: 80%;
+        position: absolute;
+        right: -20px;
+        top: 10%;
+        transition: box-shadow 0.3s linear;
+        width: 20px;
+        z-index: 1;
+        box-shadow: 0 0 10px rgba($color-dark, 0.8);
+        @include media-breakpoint-up(md) {
+            box-shadow: none;
+        }
+        .theme-dark & {
+            box-shadow: 0 0 10px rgba($color-light, 0.8);
+            @include media-breakpoint-up(md) {
+                box-shadow: none;
+            }
+        }
+    }
+    &-inner {
+        overflow-x: auto;
+        width: 100%;
+    }
+    table {
+        width: 100%;
+        min-width: 700px;
+        border-collapse: separate;
+        border-spacing: 0;
+        caption-side: bottom;
+        text-align: left;
+        vertical-align: middle;
+        th,
+        td {
+            padding: 15px;
+        }
+        thead {
+            vertical-align: bottom;
+            tr {
+                th {
+                    transition: color 0.2s linear, background-color 0.2s linear;
+                    color: rgba($color-dark, 0.5);
+                    background-color: rgba($color-dark, 0.05);
+                    .theme-dark & {
+                        color: rgba($color-light, 0.5);
+                        background-color: rgba($color-light, 0.1);
+                    }
+                    &:first-child {
+                        border-radius: 10px 0 0 0;
+                    }
+                    &:last-child {
+                        border-radius: 0 10px 0 0;
+                    }
+                }
+            }
+        }
+        tbody {
+            td {
+                transition: color 0.2s linear, background-color 0.2s linear, border-bottom-color 0.2s linear;
+                background-color: #fff;
+                border-bottom: 1px solid rgba($color-dark, 0.1);
+                .theme-dark & {
+                    background-color: rgba($color-light, 0.05);
+                    border-bottom-color: rgba($color-light, 0.1);
+                }
+            }
+            tr:last-of-type {
+                td {
+                    border-bottom: none;
+                    &:first-child {
+                        border-radius: 0 0 0 10px;
+                    }
+                    &:last-child {
+                        border-radius: 0 0 10px 0;
+                    }
+                }
+            }
+        }
+        .w-200 {
+            width: 200px;
+        }
+        .min-w-175 {
+            min-width: 175px;
+        }
+        .w-100 {
+            width: 100px;
+        }
+        .w-75 {
+            width: 75px;
+        }
+    }
+}

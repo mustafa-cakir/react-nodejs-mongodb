@@ -1,0 +1,22 @@
+/**
+	Contains the global mixings
+ */
+
+@import "colors";
+@import "variables";
+@import "functions";
+
+// custom mixings go below
+
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+	$min: breakpoint-min($name, $breakpoints);
+	@if $min {
+		@media (min-width: $min) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}

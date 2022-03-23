@@ -1,0 +1,11 @@
+@import '../../assets/styles/mixins';
+
+.footer {
+    padding: 15px 0 50px;
+    ul {
+        li {
+            display: block;
+            margin: 5px 0;
+        }
+    }
+}

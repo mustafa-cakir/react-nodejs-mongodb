@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodbdata:/data/db
+  server:
+    restart: always
+    build: ./server
+    depends_on:
+      - mongodb
+    environment:
+      NODE_EBV: development
+    ports:
+      - 5000:5000
+    volumes:
+      - server:/usr/src/app
+  client:
+    restart: always
+    build: ./client
+    depends_on:
+      - server
+    environment:
+      NODE_EBV: development
+    ports:
+      - 5001:80
+    volumes:
+      - client:/usr/src/app
+volumes:
+  mongodbdata:
+  server:
+  client:

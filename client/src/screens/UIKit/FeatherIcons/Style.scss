@@ -1,0 +1,53 @@
+@import 'src/assets/styles/mixins';
+
+.ui-kit-feathericons {
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            border: 1px solid rgba($color-dark, 0.1);
+            display: block;
+            text-align: center;
+            width: 20%;
+            position: relative;
+            .theme-dark & {
+                border-color: rgba($color-light, 0.1);
+                button {
+                    &:hover {
+                        border-color: rgba($color-light, 0.4);
+                        box-shadow: inset 0 0 10px rgba($color-light, 0.1);
+                    }
+                    &:active {
+                        box-shadow: inset 0 0 10px rgba($color-light, 0.3);
+                    }
+                }
+            }
+            button {
+                display: block;
+                height: 100%;
+                padding: 10px 0;
+                transition: background-color 0.2s linear, box-shadow 0.2s linear;
+                width: 100%;
+                &:hover {
+                    box-shadow: inset 0 0 10px rgba($color-dark, 0.1);
+                }
+                &:active {
+                    box-shadow: inset 0 0 10px rgba($color-dark, 0.3);
+                }
+            }
+            .icons {
+                font-size: 24px;
+            }
+            .copied {
+                position: absolute;
+                right: 4px;
+                top: 4px;
+                background-color: $color-blue;
+                color: #fff;
+                border-radius: 3px;
+                padding: 3px 5px;
+                font-size: 11px;
+            }
+        }
+    }
+}

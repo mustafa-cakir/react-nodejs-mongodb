@@ -1,0 +1,11 @@
+# dependencies
+**/node_modules
+
+# production folder
+**/build
+
+# misc
+**/.idea
+**/.DS_Store
+**/yarn-debug.log
+**/yarn-error.log

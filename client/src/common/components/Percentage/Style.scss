@@ -1,0 +1,21 @@
+@import '../../../assets/styles/mixins';
+
+.percentage {
+    display: inline-flex;
+    align-items: center;
+    span {
+        font-weight: bolder;
+        margin-right: 7px;
+    }
+    .icons {
+        font-size: 18px;
+    }
+    &.is {
+        &-up {
+            color: $color-green;
+        }
+        &-down {
+            color: $color-red;
+        }
+    }
+}

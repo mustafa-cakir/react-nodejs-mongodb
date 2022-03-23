@@ -1,0 +1,277 @@
+/**
+	Custom UI-Kit
+ */
+
+@import './mixins';
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    width: 100%;
+}
+@each $breakpoint, $container-max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint) {
+        .container {
+            $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+            max-width: $container-max-width;
+        }
+    }
+}
+
+.ui {
+    &-placeholder {
+        align-items: center;
+        background-color: rgba($color-dark, 0.1);
+        border: 2px dashed rgba($color-dark, 0.2);
+        color: rgba($color-dark, 0.5);
+        display: flex;
+        flex: 0 0 100%;
+        font-weight: 900;
+        justify-content: center;
+        max-width: 100%;
+        padding: 5px 10px;
+        transition: border-color 0.2s linear, color 0.2s linear, background-color 0.2s linear;
+        .theme-dark & {
+            background-color: rgba($color-light, 0.1);
+            border-color: rgba($color-light, 0.2);
+            color: rgba($color-light, 0.5);
+        }
+    }
+    &-text {
+        &-muted {
+            color: rgba($color-dark, 0.5);
+            transition: color 0.2s linear;
+            .theme-dark & {
+                color: rgba($color-light, 0.5);
+            }
+        }
+    }
+    &-icon-button {
+        align-items: center;
+        border-radius: 16px;
+        color: rgba($color-dark, 0.4);
+        display: inline-flex;
+        height: 36px;
+        justify-content: center;
+        transition: background-color 0.2s linear;
+        width: 36px;
+        .theme-dark & {
+            border-right-color: rgba($color-light, 0.4);
+            color: rgba($color-light, 0.4);
+        }
+        &:hover {
+            background-color: rgba($color-dark, 0.1);
+            .theme-dark & {
+                background-color: rgba($color-light, 0.1);
+            }
+        }
+        &:active {
+            background-color: rgba($color-dark, 0.2);
+            .theme-dark & {
+                background-color: rgba($color-light, 0.2);
+            }
+        }
+        &.active {
+            color: $color-dark;
+            .theme-dark & {
+                color: $color-light;
+            }
+        }
+        .icons {
+            font-size: 22px;
+        }
+    }
+    &-link {
+        border-bottom: 1px solid transparent;
+        color: $color-blue;
+        transition: border-bottom-color 0.2s linear, color 0.2s linear;
+        &:hover,
+        &.active {
+            border-bottom-color: $color-blue;
+        }
+        .theme-dark & {
+            color: $color-light;
+            &:hover,
+            &.active {
+                border-bottom-color: $color-light;
+            }
+        }
+    }
+
+    &-read-more-btn {
+        display: inline-flex;
+        padding: 0 10px;
+        border: 1px solid $color-blue;
+        color: $color-blue;
+        border-radius: 16px;
+        height: 32px;
+        align-items: center;
+        justify-content: center;
+	    transition: color .2s linear, background-color .2s linear, box-shadow .2s linear;
+        &:hover {
+            background-color: rgba($color-blue, 0.8);
+            color: #fff;
+        }
+        &:active {
+            color: #fff;
+            background-color: rgba($color-blue, 1);
+            box-shadow: 0 0 0 2px rgba($color-blue, 0.5);
+        }
+    }
+
+    &-input {
+        background-color: #fff;
+        border: none;
+        border-radius: 30px;
+        height: 60px;
+        line-height: 60px;
+        color: $color-dark;
+        outline: none;
+        padding: 0 25px;
+        font-size: 22px;
+        transition: box-shadow 0.2s linear, border-color 0.2s linear, color 0.2s linear, background-color 0.2s linear;
+        width: 100%;
+        box-shadow: 4px 4px 10px rgba($color-dark, 0.1);
+        &:focus,
+        &:hover {
+            box-shadow: 0 0 0 2px rgba($color-purple, 0.1);
+        }
+        &::placeholder {
+            color: rgba($color-dark, 0.3);
+        }
+        .theme-dark & {
+            background-color: mix($color-light, $color-dark, 10%);
+            color: $color-light;
+            &:focus,
+            &:hover {
+                border-color: rgba($color-light, 0.4);
+                box-shadow: 0 0 0 2px rgba($color-light, 0.1);
+            }
+            &::placeholder {
+                color: rgba($color-light, 0.3);
+            }
+        }
+        &-label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        &-wrapper {
+            position: relative;
+            .icons {
+                font-size: 22px;
+                right: 0;
+                line-height: 60px;
+                position: absolute;
+                text-align: center;
+                top: 0;
+                width: 60px;
+                z-index: 1;
+                color: rgba($color-dark, 0.4);
+                transition: color 0.2s linear;
+                .theme-dark & {
+                    color: rgba($color-light, 0.3);
+                }
+                & + .ui-input {
+                    padding-right: 60px;
+                }
+            }
+        }
+    }
+    &-box {
+        position: relative;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba($color-dark, 0.1);
+        color: $color-dark;
+        padding: 15px;
+        transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
+        .theme-dark & {
+            background-color: rgba($color-light, 0.05);
+            box-shadow: none;
+            color: $color-light;
+        }
+    }
+
+    &-d {
+        &-flex {
+            display: flex;
+        }
+    }
+
+    &-align-items-center {
+        align-items: center;
+    }
+    /* media break point varianted UI rules */
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+            $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+            @for $i from 0 through 30 {
+                @if $i % 5 == 0 {
+                    // margin: bottom/top => 5px, 10px, 15px, 20px, 25px, 30px
+                    // infix support:
+                    // ui-mb-5 => {all} screens will have margin-bottom: 5px;
+                    // ui-mb-lg-5 => {lg} and up will have margin-bottom: 5px;
+
+                    &-mb#{$infix}-#{$i} {
+                        margin-bottom: #{$i}px;
+                    }
+                    &-mt#{$infix}-#{$i} {
+                        margin-top: #{$i}px;
+                    }
+                }
+            }
+
+            &-text#{$infix} {
+	            // text-align: left/right/center
+	            // infix support:
+	            // ui-text-right => {all} screens will have text-align: right;
+	            // ui-text-lg-right => {lg} and up will have text-align: right;
+                &-left {
+                    text-align: left;
+                }
+                &-right {
+                    text-align: right;
+                }
+                &-center {
+                    text-align: center;
+                }
+            }
+
+            @for $i from 1 through 500 {
+                @if $i % 50 == 0 {
+                    // width, min-width, max-width for 50px, 100px....450px, 500px
+                    // height, min-height, max-height for 5px, 10px....495px, 500px
+                    // flex for 5px, 10px....495px, 500px
+                    // Supports breakpoint infix
+                    // ui-w-50 => {all} screens will have width: 50px;
+                    // ui-lg-w-50 => {lg} and up will have width: 50px;
+
+                    &#{$infix}-w-#{$i} {
+                        width: #{$i}px;
+                    }
+
+                    &#{$infix}-min-w-#{$i} {
+                        min-width: #{$i}px;
+                    }
+                    &#{$infix}-max-w-#{$i} {
+                        max-width: #{$i}px;
+                    }
+                    // height, min-height, max-height
+                    &#{$infix}-h-#{$i} {
+                        height: #{$i}px;
+                    }
+                    &#{$infix}-max-h-#{$i} {
+                        max-height: #{$i}px;
+                    }
+                    &#{$infix}-min-h-#{$i} {
+                        min-height: #{$i}px;
+                    }
+                }
+            }
+        }
+    }
+}

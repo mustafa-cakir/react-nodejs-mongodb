@@ -1,0 +1,46 @@
+@import '../../../assets/styles/mixins';
+
+$alert-types: (
+    info: $color-blue,
+    success: $color-green,
+    error: $color-red,
+    warning: $color-yellow,
+);
+
+.alert {
+    align-items: center;
+    animation: fadeIn 0.3s linear forwards;
+    animation-delay: 0.3s;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-flex;
+    opacity: 0;
+    padding: 10px 15px;
+    text-align: left;
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
+    .icons {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+    &.type {
+        @each $alert-type in map-keys($alert-types) {
+            // forEach alert type and apply the css rules
+            $color: map-get($alert-types, $alert-type);
+            &-#{$alert-type} {
+                background-color: rgba($color, 0.2);
+                box-shadow: 0 0 10px 0 rgba($color, 0.1);
+                color: $color;
+                @if $alert-type == 'error' {
+                    // shake animation exception for type: error
+                    animation: shake 1s linear forwards;
+                    opacity: 1;
+                }
+                .theme-dark & {
+                    background-color: mix($color, $color-dark, 5%);
+                    box-shadow: none;
+                    color: $color;
+                }
+            }
+        }
+    }
+}

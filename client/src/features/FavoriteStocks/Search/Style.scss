@@ -1,0 +1,27 @@
+@import '/src/assets/styles/mixins';
+
+.favorite-stock-search {
+    margin: -65px auto 35px auto;
+    max-width: 350px;
+    @include media-breakpoint-up(md) {
+        max-width: 500px;
+        margin: -55px auto 35px auto;
+    }
+    &-dropdown {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 30px;
+        padding: 15px;
+        margin-top: 10px;
+        box-shadow: 4px 4px 10px rgba($color-dark, 0.1);
+        transition: box-shadow 0.2s linear, background-color 0.2s linear;
+        .theme-dark & {
+            box-shadow: none;
+            background-color: mix($color-light, $color-dark, 5%);
+        }
+    }
+}

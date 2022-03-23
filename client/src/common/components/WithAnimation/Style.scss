@@ -1,0 +1,9 @@
+.withanimation {
+    left: 0;
+    position: relative;
+    top: 0;
+    z-index: 99999;
+    &.is-absolute {
+        position: absolute;
+    }
+}

@@ -1,0 +1,51 @@
+@import 'src/assets/styles/mixins';
+
+.favorite-stocks-list-grid {
+    .grid {
+        &-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        &-col {
+            max-width: 100%;
+            position: relative;
+            width: 100%;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            flex: 0 0 100%;
+            @include media-breakpoint-up(md) {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            @include media-breakpoint-up(lg) {
+                flex: 0 0 33.33333%;
+                max-width: 33.33333%;
+            }
+        }
+    }
+    .ui-box {
+        height: 100%;
+    }
+    .favorite-stocks-list-grid-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .company {
+        flex: 1;
+    }
+    .remove-btn {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+    .symbol {
+        font-size: 34px;
+    }
+    .latest-price {
+        font-size: 18px;
+    }
+}
