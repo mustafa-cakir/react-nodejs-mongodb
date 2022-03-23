@@ -1,11 +1,11 @@
-import devConfig from "./development";
-import prodConfig from "./production";
+import devConfig from './development';
+import prodConfig from './production';
 
 let appConfig;
-if (process.env.NODE_ENV === "development") {
-  appConfig = devConfig;
+if (process.env.NODE_ENV === 'development') {
+    appConfig = devConfig;
 } else {
-  appConfig = prodConfig;
+    appConfig = prodConfig;
 }
 
 export default appConfig;
