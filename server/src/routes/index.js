@@ -1,13 +1,15 @@
 import express from 'express';
-import apiRoutes from './api';
+import { authRoutes } from '../module/auth/auth.routes';
+import { userRoutes } from '../module/user/user.routes';
+import httpStatus from '../utils/httpStatus';
 
-var router = express.Router();
+const routes = express.Router();
 
-/* GET home page. */
-router.get('/', function (req, res) {
-    res.render('index', { title: 'World' });
+routes.get('/', (req, res) => {
+    res.status(httpStatus.BAD_REQUEST).json({ message: 'This is /api base' });
 });
 
-router.use('/api', apiRoutes);
+routes.use('/user', userRoutes);
+routes.use('/auth', authRoutes);
 
-export default router;
+export default routes;

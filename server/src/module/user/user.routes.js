@@ -2,11 +2,12 @@ import express from 'express';
 import { userDelete, userFindAll, userFindOne, userLogin, userRegister, userUpdate } from './user.controller';
 import { asyncWrapper } from '../../utils/asyncWrapper';
 import auth from '../../middleware/auth.middleware';
+import httpStatus from '../../utils/httpStatus';
 
 const userRoutes = express.Router();
 
 userRoutes.get('/', (req, res) => {
-    res.json({ message: 'this is /api/user base' });
+    res.status(httpStatus.BAD_REQUEST).json({ message: 'This is /api/user base' });
 });
 
 // Create

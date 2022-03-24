@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import FavoriteStocks from '../../features/FavoriteStocks';
+import Login from '../../features/Login';
 
 const Homepage = () => {
     useEffect(() => {
@@ -8,7 +8,7 @@ const Homepage = () => {
 
     return (
         <div className="container ui-min-h-500" data-testid="homepage">
-            <FavoriteStocks />
+            <Login />
         </div>
     );
 };

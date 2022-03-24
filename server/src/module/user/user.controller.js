@@ -1,11 +1,10 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserModel } from './user.model';
 import httpStatus from '../../utils/httpStatus';
-import appConfig from '../../config/env';
 
 // Create User
-export const userRegister = async (req, res, next) => {
+export const userRegister = async (req, res) => {
     try {
         const isExistingUser = await UserModel.findOne({ email: req.body.email });
         if (isExistingUser) {
@@ -29,32 +28,6 @@ export const userRegister = async (req, res, next) => {
     }
 };
 
-// Login user
-export const userLogin = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const user = await UserModel.findOne({ email: email });
-        if (user && bcrypt.compareSync(password, user.password)) {
-            const token = jwt.sign({ sub: user.id }, appConfig.jwt_key, {
-                expiresIn: '7d',
-            });
-            return res.status(httpStatus.OK).json({
-                message: 'Auth successful',
-                token: token,
-            });
-        } else {
-            return res.status(httpStatus.UNAUTHORIZED).json({
-                message: 'Auth failed!',
-            });
-        }
-    } catch (e) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-            status: 'ERROR',
-            message: e.message,
-        });
-    }
-};
-
 // Get All Users
 export const userFindAll = async (req, res) => {
     try {
@@ -67,8 +40,9 @@ export const userFindAll = async (req, res) => {
 
 // Get User By ID
 export const userFindOne = async (req, res) => {
+    const { id } = req.params || {};
     try {
-        let user = await UserModel.findById(req.params.userId);
+        let user = await UserModel.findById(id);
         if (!user) {
             return res.status(httpStatus.BAD_REQUEST).json({ message: 'User not found' });
         }
@@ -80,28 +54,34 @@ export const userFindOne = async (req, res) => {
 
 // Update User By ID
 export const userUpdate = async (req, res) => {
+    const { id } = req.params || {};
     try {
-        let user = await UserModel.findById(req.params.userId);
+        let user = await UserModel.findById(id);
         if (!user) {
             return res.status(httpStatus.BAD_REQUEST).json({ message: 'User not found' });
         }
-        Object.assign(user, req.body);
+        user = {
+            ...user,
+            ...req.body,
+        };
+        // Object.assign(user, req.body);
         await user.save();
         return res.json(user);
     } catch (error) {
-        return res.status(500).json({ error: error.toString() });
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: error.toString() });
     }
 };
 
 // Delete User By ID
 export const userDelete = async (req, res) => {
+    const { id } = req.params || {};
     try {
-        let user = await UserModel.findByIdAndRemove(req.params.userId);
+        let user = await UserModel.findByIdAndRemove(id);
         if (!user) {
             return res.status(httpStatus.BAD_REQUEST).json({ message: 'User not found' });
         }
         return res.json({ message: 'User deleted successfully!' });
     } catch (error) {
-        return res.status(500).json({ error: error.toString() });
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: error.toString() });
     }
 };

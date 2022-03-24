@@ -6,6 +6,7 @@
 import app from '../app';
 import debugLib from 'debug';
 import http from 'http';
+import ENV from '../config/env';
 
 const debug = debugLib('myapp:server');
 
@@ -71,7 +72,9 @@ var server = http.createServer(app);
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '5000');
+console.log(`PORT: ${ENV.port}`);
+
+const port = normalizePort(ENV.port || '5000');
 app.set('port', port);
 
 /**
